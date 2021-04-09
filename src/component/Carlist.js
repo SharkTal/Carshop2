@@ -13,21 +13,23 @@ function Carlist() {
   }, []);
 
   const fetchCars = () => {
-    fetch('http://carrestapi.herokuapp.com/cars')
+    fetch('https://carstockrest.herokuapp.com/cars')
     .then(response => response.json())
     .then(data => setCars(data._embedded.cars))
     .catch(err => console.error(err))
   }
 
   const deleteCar = (url) => {
-    fetch(url, { method: 'DELETE' })
-    .then(response => {
-      if (response.ok)
-        fetchCars();
-      else
-        alert('Something went wrong!');
-    })
-    .catch(err => console.error(err))
+    if (window.confirm('Are you sure?')) {
+      fetch(url, { method: 'DELETE' })
+      .then(response => {
+        if (response.ok)
+          fetchCars();
+        else
+          alert('Something went wrong!');
+      })
+      .catch(err => console.error(err))
+    }
   }
 
   const columns = [
@@ -36,7 +38,7 @@ function Carlist() {
     { field: 'color', sortable: true, filter: true  },
     { field: 'fuel', sortable: true, filter: true  },
     { field: 'year', sortable: true, filter: true, width: 100  },
-    { field: 'prie', sortable: true, filter: true, width: 100  },
+    { field: 'price', sortable: true, filter: true, width: 100  },
     { 
       headerName: '',
       field: '_links.self.href',
