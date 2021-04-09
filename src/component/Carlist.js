@@ -39,7 +39,7 @@ function Carlist() {
     { field: 'color', sortable: true, filter: true  },
     { field: 'fuel', sortable: true, filter: true  },
     { field: 'year', sortable: true, filter: true, width: 100  },
-    { field: 'prie', sortable: true, filter: true, width: 100  },
+    { field: 'price', sortable: true, filter: true, width: 100  },
     { 
       headerName: '',
       field: '_links.self.href',
@@ -54,6 +54,7 @@ function Carlist() {
         columnDefs={columns}
         pagination={true}
         paginationPageSize={10}
+        suppressCellSelection={false}
       />
     </div>
   )
